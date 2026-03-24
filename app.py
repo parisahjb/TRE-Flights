@@ -674,13 +674,3 @@ with tab3:
         
         Bootstrap CI: [−18.4%, −7.2%], *p* < 0.01, *R* = 1,000 replications.
         """)
-```
-
----
-
-## File 2: `requirements.txt`
-```
-streamlit>=1.35.0
-pandas>=2.0.0
-numpy>=1.24.0
-plotly>=5.18.0
