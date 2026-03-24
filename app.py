@@ -652,7 +652,7 @@ with tab3:
             color_class = "red" if row["Airline_Type"] == "Hub" else ""
             st.markdown(f"""
             <div class="metric-card {color_class}">
-              <div class="metric-label">{label} — Percent Change (Normal → COVID)</div>
+              <div class="metric-label">{label} — Change in Cascading Feature Importance</div>
               <div class="metric-value">{row['Percent_Change']:.1f}%</div>
             </div>""", unsafe_allow_html=True)
 
@@ -667,9 +667,11 @@ with tab3:
         </div>""", unsafe_allow_html=True)
 
         st.markdown("""
-        **Interpretation:** Hub airlines experienced a significantly 
-        larger decline in network-driven disruption mechanisms than 
-        point-to-point carriers, providing causal evidence that 
+        **Interpretation:** Hub airlines experienced a 42.9% decline in 
+        cascading delay feature importance (MDI) during COVID-19, 
+        versus 30.1% for point-to-point carriers. The DiD estimate 
+        of −12.8% represents the additional decline attributable to 
+        hub network architecture, providing causal evidence that 
         network topology mediates regime-dependent vulnerability.
         
         Bootstrap CI: [−18.4%, −7.2%], *p* < 0.01, *R* = 1,000 replications.
