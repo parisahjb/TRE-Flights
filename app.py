@@ -36,13 +36,13 @@ st.markdown("""
 # ── Data loading ──────────────────────────────────────────────────────────────
 @st.cache_data
 def load_data():
-    ews     = pd.read_csv("data/cell12_early_warning_monitoring.csv")
+    ews     = pd.read_csv("cell12_early_warning_monitoring.csv")
     ews["Date"] = pd.to_datetime(ews["Date"])
-    econ    = pd.read_csv("data/table2_economic_thresholds.csv")
-    sens    = pd.read_csv("data/table3_sensitivity_analysis.csv")
-    grp     = pd.read_csv("data/cell9_group_summary.csv")
-    results = pd.read_csv("data/results_by_period.csv")
-    did     = pd.read_csv("data/cell13_did_estimates.csv")
+    econ    = pd.read_csv("table2_economic_thresholds.csv")
+    sens    = pd.read_csv("table3_sensitivity_analysis.csv")
+    grp     = pd.read_csv("cell9_group_summary.csv")
+    results = pd.read_csv("results_by_period.csv")
+    did     = pd.read_csv("cell13_did_estimates.csv")
     return ews, econ, sens, grp, results, did
 
 ews, econ, sens, grp, results, did = load_data()
