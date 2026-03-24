@@ -68,7 +68,7 @@ REGIME_LABELS = {
 
 # ── Sidebar ───────────────────────────────────────────────────────────────────
 with st.sidebar:
-    st.image("https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Airplane_silhouette.svg/240px-Airplane_silhouette.svg.png", width=60)
+    st.markdown("## ✈️")
     st.title("Flight Disruption\nRegime Dashboard")
     st.markdown("---")
     st.markdown("""
@@ -551,7 +551,7 @@ with tab3:
         fig_bar.update_layout(
             xaxis_title="% Change from Normal Operations",
             height=400,
-            margin=dict(l=80, r=80),
+            margin=dict(l=120, r=80),
             plot_bgcolor="white", paper_bgcolor="white",
         )
         fig_bar.update_xaxes(showgrid=True, gridcolor="#f0f0f0")
