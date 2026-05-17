@@ -140,7 +140,7 @@ with tab1:
         fig.update_layout(showlegend=False, height=280,
             xaxis_title="CATE (percentage points)",
             margin=dict(l=0,r=20,t=20,b=40), plot_bgcolor="white")
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width='stretch')
 
     with col_b:
         st.subheader("CATE by Route Type")
@@ -162,7 +162,7 @@ with tab1:
         fig2.update_layout(showlegend=False, height=280,
             xaxis_title="CATE (percentage points)",
             margin=dict(l=0,r=20,t=20,b=40), plot_bgcolor="white")
-        st.plotly_chart(fig2, use_container_width=True)
+        st.plotly_chart(fig2, width='stretch')
 
     # Row 2: time of day + tier
     col_c, col_d = st.columns(2)
@@ -182,7 +182,7 @@ with tab1:
         fig3.update_layout(height=280, yaxis_title="CATE (pp)",
             margin=dict(l=0,r=20,t=20,b=80),
             plot_bgcolor="white", showlegend=False)
-        st.plotly_chart(fig3, use_container_width=True)
+        st.plotly_chart(fig3, width='stretch')
 
     with col_d:
         st.subheader("CATE by Origin Airport Tier")
@@ -198,7 +198,7 @@ with tab1:
         fig4.update_layout(height=280, yaxis_title="CATE (pp)",
             margin=dict(l=0,r=20,t=20,b=40),
             plot_bgcolor="white", showlegend=False)
-        st.plotly_chart(fig4, use_container_width=True)
+        st.plotly_chart(fig4, width='stretch')
 
     # Row 3: Identification chain
     st.subheader("Causal Identification Chain")
@@ -221,7 +221,7 @@ with tab1:
         xaxis_title="Average Treatment Effect (percentage points)",
         margin=dict(l=0,r=90,t=20,b=40),
         plot_bgcolor="white", showlegend=False, xaxis_range=[0,46])
-    st.plotly_chart(fig5, use_container_width=True)
+    st.plotly_chart(fig5, width='stretch')
     st.caption(
         "Placebo V2 (3.28 pp) and V3 (6.02 pp) are near zero, confirming the "
         "rotation mechanism. All five tests form a rigorous identification chain."
@@ -245,7 +245,7 @@ with tab1:
     ))
     fig6.update_layout(height=260,
         margin=dict(l=0,r=0,t=20,b=60))
-    st.plotly_chart(fig6, use_container_width=True)
+    st.plotly_chart(fig6, width='stretch')
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -323,7 +323,7 @@ with tab2:
         fig7.update_layout(height=450, xaxis_title="CATE (pp)",
             margin=dict(l=0,r=60,t=20,b=40),
             plot_bgcolor="white", showlegend=False)
-        st.plotly_chart(fig7, use_container_width=True)
+        st.plotly_chart(fig7, width='stretch')
 
     with col_r:
         st.subheader(f"{selected} — CATE by Route × Time")
@@ -349,7 +349,7 @@ with tab2:
             ))
             fig8.update_layout(height=300,
                 margin=dict(l=0,r=0,t=20,b=60))
-            st.plotly_chart(fig8, use_container_width=True)
+            st.plotly_chart(fig8, width='stretch')
             st.caption("Red = high propagation risk. Values above 38 pp warrant priority protocols.")
         else:
             st.info(f"No heatmap data for {selected}")
@@ -394,7 +394,7 @@ with tab2:
         fig9.update_layout(height=250, yaxis_title="CATE (pp)",
             margin=dict(l=0,r=20,t=20,b=40),
             plot_bgcolor="white", showlegend=False)
-        st.plotly_chart(fig9, use_container_width=True)
+        st.plotly_chart(fig9, width='stretch')
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -446,7 +446,7 @@ with tab3:
             yaxis_title="Downstream disruptions captured (%)",
             margin=dict(l=0,r=20,t=20,b=100),
             plot_bgcolor="white", showlegend=False)
-        st.plotly_chart(fig10, use_container_width=True)
+        st.plotly_chart(fig10, width='stretch')
 
     # K sensitivity curve
     st.subheader("TOPSIS Advantage vs K (all methods)")
@@ -473,7 +473,7 @@ with tab3:
         legend=dict(orientation="v", x=1.01),
         xaxis=dict(tickmode="linear", dtick=1)
     )
-    st.plotly_chart(fig11, use_container_width=True)
+    st.plotly_chart(fig11, width='stretch')
 
     # Priority queue
     st.subheader("Top Priority Recovery Queue (TOPSIS)")
@@ -495,7 +495,7 @@ with tab3:
         queue_display.style.background_gradient(
             subset=["CATE (pp)","TOPSIS Score"], cmap="RdYlGn_r"
         ),
-        use_container_width=True, height=380
+        width='stretch', height=380
     )
 
     # Weights
@@ -510,13 +510,13 @@ with tab3:
         ))
         fig12.update_layout(height=280,
             margin=dict(l=0,r=0,t=20,b=20))
-        st.plotly_chart(fig12, use_container_width=True)
+        st.plotly_chart(fig12, width='stretch')
     with col_tbl:
         w_display = w[["Criterion","Normalized_weight"]].copy()
         w_display["Weight (%)"] = (w_display["Normalized_weight"]*100).round(2)
         st.dataframe(
             w_display[["Criterion","Weight (%)"]],
-            use_container_width=True, hide_index=True
+            width='stretch', hide_index=True
         )
     st.caption(
         "Weights derived from Pearson correlation with downstream disruption outcomes "
@@ -813,7 +813,7 @@ with tab4:
             )
             col_radar, col_note = st.columns([1,1])
             with col_radar:
-                st.plotly_chart(fig_radar, use_container_width=True)
+                st.plotly_chart(fig_radar, width='stretch')
             with col_note:
                 st.markdown("**Why this flight is top priority:**")
                 reasons = []
