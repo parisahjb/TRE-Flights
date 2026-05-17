@@ -153,7 +153,7 @@ with tab1:
         fig.update_layout(showlegend=False, height=280,
             xaxis_title="CATE (pp)", margin=dict(l=0,r=20,t=20,b=40),
             plot_bgcolor="white")
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width='stretch')
 
     with col_b:
         st.subheader("CATE by Route Type")
@@ -175,7 +175,7 @@ with tab1:
         fig2.update_layout(showlegend=False, height=280,
             xaxis_title="CATE (pp)", margin=dict(l=0,r=20,t=20,b=40),
             plot_bgcolor="white")
-        st.plotly_chart(fig2, use_container_width=True)
+        st.plotly_chart(fig2, width='stretch')
 
     col_c, col_d = st.columns(2)
     with col_c:
@@ -192,7 +192,7 @@ with tab1:
         fig3.update_layout(height=280, yaxis_title="CATE (pp)",
             margin=dict(l=0,r=20,t=20,b=80),
             plot_bgcolor="white", showlegend=False)
-        st.plotly_chart(fig3, use_container_width=True)
+        st.plotly_chart(fig3, width='stretch')
 
     with col_d:
         st.subheader("CATE by Origin Airport Tier")
@@ -207,7 +207,7 @@ with tab1:
         fig4.update_layout(height=280, yaxis_title="CATE (pp)",
             margin=dict(l=0,r=20,t=20,b=40),
             plot_bgcolor="white", showlegend=False)
-        st.plotly_chart(fig4, use_container_width=True)
+        st.plotly_chart(fig4, width='stretch')
 
     st.subheader("Causal Identification Chain")
     id_labels = [
@@ -232,7 +232,7 @@ with tab1:
         xaxis_title="Average Treatment Effect (pp)",
         margin=dict(l=0,r=90,t=20,b=40),
         plot_bgcolor="white", showlegend=False, xaxis_range=[0,46])
-    st.plotly_chart(fig5, use_container_width=True)
+    st.plotly_chart(fig5, width='stretch')
     st.caption(
         "Placebo V2 (3.28 pp) and V3 (6.02 pp) near zero — rotation mechanism confirmed. "
         "All heterogeneity differences significant at p<0.001."
@@ -251,7 +251,7 @@ with tab1:
         colorbar=dict(title="CATE (pp)"), zmin=10, zmax=55
     ))
     fig6.update_layout(height=260, margin=dict(l=0,r=0,t=20,b=60))
-    st.plotly_chart(fig6, use_container_width=True)
+    st.plotly_chart(fig6, width='stretch')
 
 # ── TAB 2 ─────────────────────────────────────────────────────────────────────
 with tab2:
@@ -299,7 +299,7 @@ with tab2:
         fig7.update_layout(height=480, xaxis_title="CATE (pp)",
             margin=dict(l=0,r=60,t=20,b=40),
             plot_bgcolor="white", showlegend=False)
-        st.plotly_chart(fig7, use_container_width=True)
+        st.plotly_chart(fig7, width='stretch')
 
     with col_r:
         st.subheader(f"{selected} — CATE by Route × Time")
@@ -322,7 +322,7 @@ with tab2:
                 colorbar=dict(title="CATE (pp)"), zmin=10, zmax=55
             ))
             fig8.update_layout(height=300, margin=dict(l=0,r=0,t=20,b=60))
-            st.plotly_chart(fig8, use_container_width=True)
+            st.plotly_chart(fig8, width='stretch')
             st.caption("Red = high propagation risk. Above 38 pp warrants priority protocols.")
         else:
             st.info(f"No heatmap data for {selected}.")
@@ -355,7 +355,7 @@ with tab2:
         fig9.update_layout(height=250, yaxis_title="CATE (pp)",
             margin=dict(l=0,r=20,t=20,b=40),
             plot_bgcolor="white", showlegend=False)
-        st.plotly_chart(fig9, use_container_width=True)
+        st.plotly_chart(fig9, width='stretch')
 
 # ── TAB 3 ─────────────────────────────────────────────────────────────────────
 with tab3:
@@ -386,7 +386,7 @@ with tab3:
             yaxis_title="Downstream disruptions captured (%)",
             margin=dict(l=0,r=20,t=20,b=100),
             plot_bgcolor="white", showlegend=False)
-        st.plotly_chart(fig10, use_container_width=True)
+        st.plotly_chart(fig10, width='stretch')
 
     st.subheader("K Sensitivity — All Methods")
     bench_ct = D["bench"][D["bench"]["carrier_type"]==ct_filter]
@@ -405,7 +405,7 @@ with tab3:
         xaxis_title="K", yaxis_title="Downstream disruptions captured (%)",
         margin=dict(l=0,r=20,t=20,b=40), plot_bgcolor="white",
         xaxis=dict(tickmode="linear", dtick=1))
-    st.plotly_chart(fig11, use_container_width=True)
+    st.plotly_chart(fig11, width='stretch')
 
     st.subheader("Top Priority Recovery Queue (TOPSIS)")
     queue = D["queue"].copy()
@@ -418,10 +418,10 @@ with tab3:
                "CATE_T1":"CATE (pp)","DOWNSTREAM_SPILLOVER":"Spillover",
                "RECOVERY_WINDOW":"Rec Window","TOPSIS_SCORE":"TOPSIS Score",
                "NEXT_DISRUPTED":"Cascade?"}
+# Replace the queue dataframe block in your app.py with this:
     st.dataframe(
-        queue[list(display.keys())].rename(columns=display).style
-        .background_gradient(subset=["CATE (pp)","TOPSIS Score"], cmap="RdYlGn_r"),
-        use_container_width=True, height=360
+        queue[list(display.keys())].rename(columns=display),
+        width='stretch', height=360
     )
 
     st.subheader("TOPSIS Criteria Weights (Data-Driven)")
@@ -434,9 +434,9 @@ with tab3:
             marker_colors=["#2E75B6","#2ca02c","#ff7f0e","#d62728","#9467bd"]
         ))
         fig12.update_layout(height=280, margin=dict(l=0,r=0,t=20,b=20))
-        st.plotly_chart(fig12, use_container_width=True)
+        st.plotly_chart(fig12, width='stretch')
     with col_tbl:
-        st.dataframe(WEIGHTS_DATA, use_container_width=True, hide_index=True)
+        st.dataframe(WEIGHTS_DATA, width='stretch', hide_index=True)
     st.caption(
         "Weights derived from Pearson correlation with downstream disruption outcomes. "
         "Robust across 13 weight scenarios (max variation 0.25%)."
