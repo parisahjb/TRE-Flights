@@ -1,0 +1,17 @@
+CARRIER_TYPE,TIME_BIN,mean_cate,n
+LCC,Afternoon (15-19),0.39936644,155518
+LCC,Early morning (5-9),0.11469424,149398
+LCC,Evening/night (20+),0.39113083,63801
+LCC,Midday (10-14),0.380971,153147
+Mainline,Afternoon (15-19),0.35372868,246328
+Mainline,Early morning (5-9),0.113283515,254987
+Mainline,Evening/night (20+),0.2874807,100738
+Mainline,Midday (10-14),0.34030384,254084
+Regional,Afternoon (15-19),0.4129543,162453
+Regional,Early morning (5-9),0.22557363,143973
+Regional,Evening/night (20+),0.31932038,47924
+Regional,Midday (10-14),0.4028633,170921
+ULCC,Afternoon (15-19),0.42041564,27587
+ULCC,Early morning (5-9),0.18074077,26958
+ULCC,Evening/night (20+),0.40217313,17066
+ULCC,Midday (10-14),0.41267037,25117

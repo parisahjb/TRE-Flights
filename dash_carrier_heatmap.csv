@@ -1,0 +1,178 @@
+carrier,route_type,time_bin,mean_cate
+9E,Hub-to-Hub,Afternoon (15-19),0.4016736
+9E,Hub-to-Hub,Early morning (5-9),0.20698042
+9E,Hub-to-Hub,Evening/night (20+),0.3175565
+9E,Hub-to-Hub,Midday (10-14),0.390121
+9E,Hub-to-Spoke,Afternoon (15-19),0.42769325
+9E,Hub-to-Spoke,Early morning (5-9),0.2545074
+9E,Hub-to-Spoke,Evening/night (20+),0.26827568
+9E,Hub-to-Spoke,Midday (10-14),0.40824035
+AA,Hub-to-Hub,Afternoon (15-19),0.35056087
+AA,Hub-to-Hub,Early morning (5-9),0.10863046
+AA,Hub-to-Hub,Evening/night (20+),0.29222512
+AA,Hub-to-Hub,Midday (10-14),0.33355454
+AA,Hub-to-Spoke,Afternoon (15-19),0.38517272
+AA,Hub-to-Spoke,Early morning (5-9),0.14113985
+AA,Hub-to-Spoke,Evening/night (20+),0.27407128
+AA,Hub-to-Spoke,Midday (10-14),0.3844209
+AS,Hub-to-Hub,Afternoon (15-19),0.35138917
+AS,Hub-to-Hub,Early morning (5-9),0.102463745
+AS,Hub-to-Hub,Evening/night (20+),0.2901338
+AS,Hub-to-Hub,Midday (10-14),0.3227892
+AS,Hub-to-Spoke,Afternoon (15-19),0.4369755
+AS,Hub-to-Spoke,Early morning (5-9),0.13931791
+AS,Hub-to-Spoke,Evening/night (20+),0.3563606
+AS,Hub-to-Spoke,Midday (10-14),0.4362483
+AS,Spoke-to-Spoke,Afternoon (15-19),0.57157046
+AS,Spoke-to-Spoke,Early morning (5-9),0.22933418
+AS,Spoke-to-Spoke,Evening/night (20+),0.47387353
+AS,Spoke-to-Spoke,Midday (10-14),0.53684515
+B6,Hub-to-Hub,Afternoon (15-19),0.39962947
+B6,Hub-to-Hub,Early morning (5-9),0.14240302
+B6,Hub-to-Hub,Evening/night (20+),0.39272055
+B6,Hub-to-Hub,Midday (10-14),0.39512855
+B6,Hub-to-Spoke,Afternoon (15-19),0.46443343
+B6,Hub-to-Spoke,Early morning (5-9),0.16636918
+B6,Hub-to-Spoke,Evening/night (20+),0.36724105
+B6,Hub-to-Spoke,Midday (10-14),0.44194204
+B6,Spoke-to-Spoke,Early morning (5-9),0.19868086
+B6,Spoke-to-Spoke,Midday (10-14),0.53969604
+DL,Hub-to-Hub,Afternoon (15-19),0.34579462
+DL,Hub-to-Hub,Early morning (5-9),0.11225987
+DL,Hub-to-Hub,Evening/night (20+),0.26882812
+DL,Hub-to-Hub,Midday (10-14),0.3318272
+DL,Hub-to-Spoke,Afternoon (15-19),0.3694837
+DL,Hub-to-Spoke,Early morning (5-9),0.17040728
+DL,Hub-to-Spoke,Evening/night (20+),0.23432612
+DL,Hub-to-Spoke,Midday (10-14),0.39214453
+EV,Hub-to-Hub,Afternoon (15-19),0.41237402
+EV,Hub-to-Hub,Early morning (5-9),0.20468813
+EV,Hub-to-Hub,Evening/night (20+),0.36254814
+EV,Hub-to-Hub,Midday (10-14),0.40208775
+EV,Hub-to-Spoke,Afternoon (15-19),0.4244625
+EV,Hub-to-Spoke,Early morning (5-9),0.24967629
+EV,Hub-to-Spoke,Evening/night (20+),0.28406984
+EV,Hub-to-Spoke,Midday (10-14),0.40825847
+EV,Spoke-to-Spoke,Afternoon (15-19),0.606868
+EV,Spoke-to-Spoke,Early morning (5-9),0.22677363
+EV,Spoke-to-Spoke,Evening/night (20+),0.5572278
+EV,Spoke-to-Spoke,Midday (10-14),0.5447739
+F9,Hub-to-Hub,Afternoon (15-19),0.41065398
+F9,Hub-to-Hub,Early morning (5-9),0.17017533
+F9,Hub-to-Hub,Evening/night (20+),0.39387175
+F9,Hub-to-Hub,Midday (10-14),0.3979188
+F9,Hub-to-Spoke,Afternoon (15-19),0.44406095
+F9,Hub-to-Spoke,Early morning (5-9),0.18148619
+F9,Hub-to-Spoke,Evening/night (20+),0.43827805
+F9,Hub-to-Spoke,Midday (10-14),0.4403889
+F9,Spoke-to-Spoke,Afternoon (15-19),0.5005415
+F9,Spoke-to-Spoke,Early morning (5-9),0.1795791
+F9,Spoke-to-Spoke,Evening/night (20+),0.5433262
+F9,Spoke-to-Spoke,Midday (10-14),0.49431252
+G4,Hub-to-Hub,Afternoon (15-19),0.4375327
+G4,Hub-to-Hub,Early morning (5-9),0.1781441
+G4,Hub-to-Hub,Evening/night (20+),0.4703403
+G4,Hub-to-Hub,Midday (10-14),0.42134812
+G4,Hub-to-Spoke,Afternoon (15-19),0.46222922
+G4,Hub-to-Spoke,Early morning (5-9),0.18005545
+G4,Hub-to-Spoke,Evening/night (20+),0.49545074
+G4,Hub-to-Spoke,Midday (10-14),0.45528653
+G4,Spoke-to-Spoke,Afternoon (15-19),0.5159944
+G4,Spoke-to-Spoke,Early morning (5-9),0.19857316
+G4,Spoke-to-Spoke,Evening/night (20+),0.52069765
+G4,Spoke-to-Spoke,Midday (10-14),0.49537554
+HA,Hub-to-Hub,Afternoon (15-19),0.46569178
+HA,Hub-to-Hub,Early morning (5-9),0.17529029
+HA,Hub-to-Hub,Evening/night (20+),0.3736994
+HA,Hub-to-Hub,Midday (10-14),0.41123217
+HA,Hub-to-Spoke,Afternoon (15-19),0.50536054
+HA,Hub-to-Spoke,Early morning (5-9),0.2036662
+HA,Hub-to-Spoke,Evening/night (20+),0.4479462
+HA,Hub-to-Spoke,Midday (10-14),0.48010623
+MQ,Hub-to-Hub,Afternoon (15-19),0.40085977
+MQ,Hub-to-Hub,Early morning (5-9),0.2118716
+MQ,Hub-to-Hub,Evening/night (20+),0.33774453
+MQ,Hub-to-Hub,Midday (10-14),0.38568267
+MQ,Hub-to-Spoke,Afternoon (15-19),0.4209089
+MQ,Hub-to-Spoke,Early morning (5-9),0.24579382
+MQ,Hub-to-Spoke,Evening/night (20+),0.2890702
+MQ,Hub-to-Spoke,Midday (10-14),0.41164982
+NK,Hub-to-Hub,Afternoon (15-19),0.39955425
+NK,Hub-to-Hub,Early morning (5-9),0.18072997
+NK,Hub-to-Hub,Evening/night (20+),0.39192626
+NK,Hub-to-Hub,Midday (10-14),0.39154398
+NK,Hub-to-Spoke,Afternoon (15-19),0.47311527
+NK,Hub-to-Spoke,Early morning (5-9),0.21763064
+NK,Hub-to-Spoke,Evening/night (20+),0.39692393
+NK,Hub-to-Spoke,Midday (10-14),0.43344584
+NK,Spoke-to-Spoke,Afternoon (15-19),0.5382519
+NK,Spoke-to-Spoke,Early morning (5-9),0.21129428
+NK,Spoke-to-Spoke,Evening/night (20+),0.5271712
+NK,Spoke-to-Spoke,Midday (10-14),0.50787485
+OH,Hub-to-Hub,Afternoon (15-19),0.40604237
+OH,Hub-to-Hub,Early morning (5-9),0.21835646
+OH,Hub-to-Hub,Evening/night (20+),0.31715384
+OH,Hub-to-Hub,Midday (10-14),0.38444048
+OH,Hub-to-Spoke,Afternoon (15-19),0.4194369
+OH,Hub-to-Spoke,Early morning (5-9),0.23871122
+OH,Hub-to-Spoke,Evening/night (20+),0.29406717
+OH,Hub-to-Spoke,Midday (10-14),0.41170058
+OO,Hub-to-Hub,Afternoon (15-19),0.403753
+OO,Hub-to-Hub,Early morning (5-9),0.2048285
+OO,Hub-to-Hub,Evening/night (20+),0.36183873
+OO,Hub-to-Hub,Midday (10-14),0.390325
+OO,Hub-to-Spoke,Afternoon (15-19),0.42355296
+OO,Hub-to-Spoke,Early morning (5-9),0.26858935
+OO,Hub-to-Spoke,Evening/night (20+),0.29290327
+OO,Hub-to-Spoke,Midday (10-14),0.420662
+OO,Spoke-to-Spoke,Afternoon (15-19),0.56604373
+OO,Spoke-to-Spoke,Early morning (5-9),0.29980507
+OO,Spoke-to-Spoke,Evening/night (20+),0.5498857
+OO,Spoke-to-Spoke,Midday (10-14),0.5535639
+UA,Hub-to-Hub,Afternoon (15-19),0.3443903
+UA,Hub-to-Hub,Early morning (5-9),0.10189825
+UA,Hub-to-Hub,Evening/night (20+),0.3036352
+UA,Hub-to-Hub,Midday (10-14),0.33365157
+UA,Hub-to-Spoke,Afternoon (15-19),0.34639734
+UA,Hub-to-Spoke,Early morning (5-9),0.13766032
+UA,Hub-to-Spoke,Evening/night (20+),0.30679822
+UA,Hub-to-Spoke,Midday (10-14),0.4010195
+UA,Spoke-to-Spoke,Afternoon (15-19),0.56845224
+UA,Spoke-to-Spoke,Early morning (5-9),0.19449696
+UA,Spoke-to-Spoke,Evening/night (20+),0.33750933
+US,Hub-to-Hub,Afternoon (15-19),0.35383096
+US,Hub-to-Hub,Early morning (5-9),0.09801074
+US,Hub-to-Hub,Evening/night (20+),0.29835206
+US,Hub-to-Hub,Midday (10-14),0.3399947
+US,Hub-to-Spoke,Afternoon (15-19),0.39317355
+US,Hub-to-Spoke,Early morning (5-9),0.13809443
+US,Hub-to-Spoke,Evening/night (20+),0.27647406
+US,Hub-to-Spoke,Midday (10-14),0.38982096
+VX,Hub-to-Hub,Afternoon (15-19),0.38928264
+VX,Hub-to-Hub,Early morning (5-9),0.13829155
+VX,Hub-to-Hub,Evening/night (20+),0.36284122
+VX,Hub-to-Hub,Midday (10-14),0.37374857
+WN,Hub-to-Hub,Afternoon (15-19),0.39684978
+WN,Hub-to-Hub,Early morning (5-9),0.10677106
+WN,Hub-to-Hub,Evening/night (20+),0.39310324
+WN,Hub-to-Hub,Midday (10-14),0.3756121
+WN,Hub-to-Spoke,Afternoon (15-19),0.43476674
+WN,Hub-to-Spoke,Early morning (5-9),0.12753288
+WN,Hub-to-Spoke,Evening/night (20+),0.37469456
+WN,Hub-to-Spoke,Midday (10-14),0.41060507
+YV,Hub-to-Hub,Afternoon (15-19),0.39942068
+YV,Hub-to-Hub,Early morning (5-9),0.1797324
+YV,Hub-to-Hub,Evening/night (20+),0.36909062
+YV,Hub-to-Hub,Midday (10-14),0.38399094
+YV,Hub-to-Spoke,Afternoon (15-19),0.42433792
+YV,Hub-to-Spoke,Early morning (5-9),0.19472593
+YV,Hub-to-Spoke,Evening/night (20+),0.3304156
+YV,Hub-to-Spoke,Midday (10-14),0.40013713
+YX,Hub-to-Hub,Afternoon (15-19),0.38761
+YX,Hub-to-Hub,Early morning (5-9),0.16421428
+YX,Hub-to-Hub,Evening/night (20+),0.3435113
+YX,Hub-to-Hub,Midday (10-14),0.38270172
+YX,Hub-to-Spoke,Afternoon (15-19),0.43295288
+YX,Hub-to-Spoke,Early morning (5-9),0.18214133
+YX,Hub-to-Spoke,Evening/night (20+),0.31481192
+YX,Hub-to-Spoke,Midday (10-14),0.40904757

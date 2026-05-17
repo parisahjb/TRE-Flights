@@ -1,0 +1,13 @@
+CARRIER_TYPE,ROUTE_TYPE,mean_cate,n
+LCC,Hub-to-Hub,0.30959693,494918
+LCC,Hub-to-Spoke,0.34579468,26932
+LCC,Spoke-to-Spoke,0.34483024,14
+Mainline,Hub-to-Hub,0.26704836,793285
+Mainline,Hub-to-Spoke,0.3036128,60110
+Mainline,Spoke-to-Spoke,0.49215174,2742
+Regional,Hub-to-Hub,0.33632597,258959
+Regional,Hub-to-Spoke,0.36242095,265037
+Regional,Spoke-to-Spoke,0.44978952,1275
+ULCC,Hub-to-Hub,0.3363836,75415
+ULCC,Hub-to-Spoke,0.38230452,15512
+ULCC,Spoke-to-Spoke,0.4137674,5801
