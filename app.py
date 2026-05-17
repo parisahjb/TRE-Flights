@@ -72,6 +72,29 @@ c1,c2,c3,c4=st.columns(4)
 for col,val,lbl,cls in zip([c1,c2,c3,c4],["30.57 pp","49.51%","66.5M","0.81"],["Global causal ATE [21.76, 39.38]","Downstream disruption rate","Flights analyzed (2015–2025)","Predictive model AUC"],["","high-risk","","low-risk"]):
     with col:
         st.markdown(f'<div class="metric-card {cls}"><div class="metric-value">{val}</div><div class="metric-label">{lbl}</div></div>',unsafe_allow_html=True)
+with st.expander("ℹ️  About this dashboard", expanded=False):
+    st.markdown("""
+**What is this?**
+A causal decision support system (DSS) for U.S. domestic flight disruption analysis and recovery prioritization,
+built from 66.5 million BTS On-Time Performance records (2015–2025).
+
+**What does CATE mean?**
+CATE stands for Conditional Average Treatment Effect — it measures how much a prior flight disruption on the
+same aircraft rotation *causally* increases the probability that the next flight is also disrupted.
+A CATE of 30 pp means a prior disruption raises the next flight's disruption probability by 30 percentage points
+(from a baseline of ~19% to ~49%). Estimated using a causal forest with airport-day confounding controls and
+validated by three placebo tests.
+
+**The four tabs:**
+- **🌐 Global Causal Intelligence** — System-wide propagation effects by carrier type, route, time of day, and airport tier. Includes the full causal identification chain.
+- **🏢 Airline Command View** — Select any carrier to see their CATE relative to the system average, a route × time heatmap, and where the global view misleads.
+- **🚑 Recovery Prioritization Engine** — Compare seven ranking methods (including TOPSIS) for prioritizing which disrupted flights to recover first, at any intervention capacity K.
+- **🚨 Live Flight Triage** — Enter today's disrupted flights and get a real-time TOPSIS priority ranking.
+
+**Data source:** BTS On-Time Performance Database. No external data used.
+**Models trained on:** 2015–2019. Evaluated on 2022–2025 (recovery regime).
+""")
+
 st.markdown("---")
 
 tab1,tab2,tab3,tab4=st.tabs(["🌐  Global Causal Intelligence","🏢  Airline Command View","🚑  Recovery Prioritization Engine","🚨  Live Flight Triage"])
@@ -243,7 +266,35 @@ with tab3:
 with tab4:
     st.header("Live Flight Triage")
     st.markdown("Enter disrupted flights for a given airport and date. The system computes a real-time TOPSIS priority ranking using causal propagation estimates and operational criteria.")
-    st.info("**How it works:** CATE estimates are looked up from the carrier × route × time heatmap trained on 2015–2019 data. All other criteria are entered directly from today's schedule. Weights are data-driven from the training period.")
+
+    with st.expander("📖  How to use this tab", expanded=False):
+        st.markdown("""
+**Scenario:** You are an airline ops manager at a hub airport. Several flights have been disrupted.
+You have limited ground crew or gate resources and need to decide which flights to intervene on first.
+
+**Step-by-step:**
+
+1. **Add each disrupted flight** using the form below. For each flight you need:
+   - **Carrier and airports** — the operating carrier, origin, and destination IATA codes (e.g. ATL, ORD)
+   - **Route type** — Hub-to-Hub (both airports are large/medium hubs), Hub-to-Spoke (one hub, one smaller airport), or Spoke-to-Spoke (both small/non-hub)
+   - **Origin tier** — Large hub (e.g. ATL, ORD, LAX), Medium hub (e.g. RDU, MSY), Small hub, or Non-hub
+   - **Departure hour** — the scheduled departure hour (0–23)
+   - **Current delay** — how many minutes the flight is currently delayed
+   - **Downstream flights at risk** — how many subsequent flights on this aircraft rotation today could be affected
+   - **Route 30-day disruption rate** — approximate percentage of days this route has been disrupted in the past month (check your OCC system or use 20% as a default)
+   - **Route annual departures** — approximate annual frequency of this OD pair (use 2000 as a default if unknown)
+
+2. **CATE is auto-estimated** — you do not need to enter it. The system looks it up from carrier × route × time patterns trained on 5 years of BTS data.
+
+3. **Click Add Flight** for each disrupted flight, then review the TOPSIS priority ranking.
+
+**What the ranking means:**
+The flight ranked 🔴 CRITICAL has the highest composite priority score — it combines causal propagation risk, downstream spillover, recovery window, and historical burden. Intervening on this flight first is expected to prevent the most downstream disruptions.
+
+**Tip:** Add at least 3–5 flights to make the ranking meaningful. With only 2 flights the comparison is limited.
+""")
+
+    st.info("**CATE auto-estimated** from carrier × route × time heatmap (2015–2019 training data). Enter all other fields from today's schedule.")
     W={"CATE":0.0613,"SPILLOVER":0.3191,"STRATEGIC":0.0212,"WINDOW":0.5204,"HIST_RATE":0.0780}
 
     @st.cache_data
