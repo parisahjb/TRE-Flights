@@ -621,22 +621,43 @@ with tab3:
     queue["CATE_T1"] = (queue["CATE_T1"]*100).round(1)
     queue["ROUTE_30DAY_DISR_RATE"] = (queue["ROUTE_30DAY_DISR_RATE"]*100).round(1)
     queue["RECOVERY_WINDOW"] = queue["RECOVERY_WINDOW"].round(0).astype(int)
-    # Compute SAW score for display
-    X_q = np.array([
-        [r["CATE_T1"]/100, r["DOWNSTREAM_SPILLOVER"],
-         r["ROUTE_STRATEGIC_VALUE"], r["RECOVERY_WINDOW"],
-         r["ROUTE_30DAY_DISR_RATE"]/100]
-        for _, r in queue.iterrows()
-    ], dtype=float)
-    queue["SAW_SCORE"] = saw_score(X_q, GA_WEIGHTS["Global (GA-calibrated)"]).round(4)
+
+    # Compute SAW score defensively — use available columns
+    criteria_cols = {
+        "CATE":      "CATE_T1",
+        "SPILLOVER": "DOWNSTREAM_SPILLOVER",
+        "STRATEGIC": "ROUTE_STRATEGIC_VALUE",
+        "WINDOW":    "RECOVERY_WINDOW",
+        "HIST_RATE": "ROUTE_30DAY_DISR_RATE",
+    }
+    missing = [v for v in criteria_cols.values() if v not in queue.columns]
+    if missing:
+        # Fall back: rename TOPSIS_SCORE to SAW_SCORE if present
+        if "TOPSIS_SCORE" in queue.columns:
+            queue["SAW_SCORE"] = queue["TOPSIS_SCORE"].round(4)
+        else:
+            queue["SAW_SCORE"] = 0.0
+    else:
+        X_q = np.array([
+            [r[criteria_cols["CATE"]]/100,
+             r[criteria_cols["SPILLOVER"]],
+             r[criteria_cols["STRATEGIC"]],
+             r[criteria_cols["WINDOW"]],
+             r[criteria_cols["HIST_RATE"]]/100]
+            for _, r in queue.iterrows()
+        ], dtype=float)
+        queue["SAW_SCORE"] = saw_score(X_q, GA_WEIGHTS["Global (GA-calibrated)"]).round(4)
+
     display = {
         "OP_UNIQUE_CARRIER":"Carrier","ORIGIN_AIRPORT":"Origin","DEST_AIRPORT":"Dest",
         "CARRIER_TYPE":"Type","ROUTE_TYPE":"Route","CATE_T1":"CATE (pp)",
         "DOWNSTREAM_SPILLOVER":"Spillover","RECOVERY_WINDOW":"Rec Window",
         "SAW_SCORE":"SAW Score","NEXT_DISRUPTED":"Cascade?",
     }
+    # Only show columns that exist
+    show_cols = [k for k in display if k in queue.columns]
     st.dataframe(
-        queue[list(display.keys())].rename(columns=display),
+        queue[show_cols].rename(columns=display),
         use_container_width=True, height=360
     )
     st.caption(
