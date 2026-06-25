@@ -570,10 +570,10 @@ with tab3:
                         xaxis=dict(tickmode="linear", dtick=1))
     st.plotly_chart(fig11, use_container_width=True)
     st.caption(
-        "C-FRPD GA-calibrated Global policy outperforms all six benchmarks for K=1–20. "
-        "Gains are largest at K=5–10 (+0.41–0.49 pp). "
-        "Oracle ceiling at K=3: 17.36% (C-FRPD achieves 64% of theoretical maximum)."
-    )
+    "C-FRPD GA-calibrated Global policy outperforms all six benchmarks for K=1–20. "
+    "Gains are largest at K=5–10 (+0.87–0.92 pp). "
+    "Oracle ceiling at K=3: 17.36% (C-FRPD achieves 64% of theoretical maximum)."
+)
 
     st.subheader("GA-Calibrated Policy Weights")
     col_w1, col_w2 = st.columns([1.2, 1])
@@ -599,7 +599,7 @@ with tab3:
     with col_w2:
         st.markdown("**Policy library — validated on holdout (K=3)**")
         policy_summary = pd.DataFrame([
-            {"Policy": "Global (GA)",          "Captured %": 11.06, "vs Best benchmark": "+0.29 pp"},
+            {"Policy": "Global (GA)",          "Captured %": 11.06, "vs Best benchmark": "+0.65 pp"},
             {"Policy": "Carrier: ULCC",         "Captured %": 41.67, "vs Best benchmark": "+30.20 pp"},
             {"Policy": "Carrier: Regional",     "Captured %": 33.80, "vs Best benchmark": "+16.00 pp"},
             {"Policy": "Carrier: LCC",          "Captured %": 25.14, "vs Best benchmark": "+16.78 pp"},
