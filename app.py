@@ -197,7 +197,7 @@ st.title("C-FRPD — Causal Flight Recovery Prioritization Dashboard")
 st.markdown(
     "**GA-calibrated causal DSS** for U.S. domestic flight disruption recovery | "
     "66.5M BTS flights (2015-2025) | "
-    "Paper: Decision Support Systems (under review)"
+    # "Paper: Decision Support Systems (under review)"
 )
 
 c1, c2, c3, c4 = st.columns(4)
