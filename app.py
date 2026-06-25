@@ -520,61 +520,92 @@ with tab3:
 
     col1, col2 = st.columns(2)
     with col1:
-        k_val = st.slider("Intervention budget K (user-specified)", 1, 30, 3,
-                          help="Number of flights to intervene on per airport-date scenario. "
-                               "Set this to your actual available recovery capacity.")
+        k_val = st.slider("Intervention budget K (user-specified)", 1, 20, 3,
+                          help="Number of flights to intervene on per airport-date scenario.")
     with col2:
         ct_filter = st.selectbox("Filter by carrier type", ["All","Mainline","LCC","ULCC","Regional"])
 
-    st.subheader(f"Benchmark Comparison at K={k_val}")
-    bench_k = D["bench"][(D["bench"]["k"]==k_val) & (D["bench"]["carrier_type"]==ct_filter)].sort_values("pct_captured", ascending=False)
-    if len(bench_k) > 0:
-        # Rename TOPSIS column to C-FRPD for display
-        bench_display = bench_k.copy()
-        bench_display["method"] = bench_display["method"].replace({"TOPSIS (DSS)": "C-FRPD (GA-calibrated)"})
+    # ── Metric cards for selected K ──────────────────────────────────────────
+    if k_val in HOLDOUT_K_TABLE and ct_filter == "All":
+        ga_pct, preGA_pct, best_pct, best_name, delay_pct, protected, oracle_pct, regret = HOLDOUT_K_TABLE[k_val]
+        gap = round(ga_pct - best_pct, 2)
+        m1, m2, m3, m4 = st.columns(4)
+        with m1:
+            st.markdown(f'<div class="metric-card low-risk"><div class="metric-value">{ga_pct:.2f}%</div><div class="metric-label">C-FRPD captured (K={k_val})</div></div>', unsafe_allow_html=True)
+        with m2:
+            st.markdown(f'<div class="metric-card"><div class="metric-value">+{gap:.2f} pp</div><div class="metric-label">vs best benchmark ({best_name})</div></div>', unsafe_allow_html=True)
+        with m3:
+            st.markdown(f'<div class="metric-card"><div class="metric-value">{protected:,}</div><div class="metric-label">Downstream flights protected</div></div>', unsafe_allow_html=True)
+        with m4:
+            oracle_pct_val = round(ga_pct / oracle_pct * 100, 1) if oracle_pct > 0 else 0
+            st.markdown(f'<div class="metric-card"><div class="metric-value">{oracle_pct_val:.1f}%</div><div class="metric-label">Of oracle ceiling ({oracle_pct:.2f}%)</div></div>', unsafe_allow_html=True)
+
+    st.subheader(f"Benchmark Comparison at K={k_val}" + ("" if ct_filter=="All" else f" — {ct_filter}"))
+
+    # ── Bar chart ─────────────────────────────────────────────────────────────
+    if ct_filter == "All" and k_val in HOLDOUT_K_TABLE:
+        bar_methods = list(BENCHMARK_METHODS_ALL.keys())
+        bar_values  = [BENCHMARK_METHODS_ALL[m][k_val-1] for m in bar_methods]
+        bar_df = pd.DataFrame({"method": bar_methods, "pct": bar_values}).sort_values("pct", ascending=False)
         fig10 = go.Figure(go.Bar(
-            x=bench_display["method"].tolist(),
-            y=bench_display["pct_captured"].tolist(),
-            marker_color=[METHOD_COLORS.get(m,"#7f7f7f") for m in bench_display["method"]],
-            text=[f"{v:.2f}%" for v in bench_display["pct_captured"]], textposition="outside"
+            x=bar_df["method"].tolist(),
+            y=bar_df["pct"].tolist(),
+            marker_color=[METHOD_COLORS.get(m, "#7f7f7f") for m in bar_df["method"]],
+            text=[f"{v:.2f}%" for v in bar_df["pct"]], textposition="outside"
         ))
-        fig10.update_layout(height=360, yaxis_title="Downstream disruptions captured (%)",
+        fig10.update_layout(height=380, yaxis_title="Downstream disruptions captured (%)",
                             margin=dict(l=0,r=20,t=20,b=120),
                             plot_bgcolor="white", showlegend=False)
         st.plotly_chart(fig10, use_container_width=True)
     else:
-        st.info(f"No benchmark data for K={k_val}. Available K values: 1–10.")
+        # Fall back to CSV for carrier-type filtered view (K=1-10 only)
+        bench_k = D["bench"][(D["bench"]["k"]==k_val) & (D["bench"]["carrier_type"]==ct_filter)].sort_values("pct_captured", ascending=False)
+        if len(bench_k) > 0:
+            bench_display = bench_k.copy()
+            bench_display["method"] = bench_display["method"].replace({"TOPSIS (DSS)": "C-FRPD (GA-calibrated)"})
+            fig10 = go.Figure(go.Bar(
+                x=bench_display["method"].tolist(),
+                y=bench_display["pct_captured"].tolist(),
+                marker_color=[METHOD_COLORS.get(m,"#7f7f7f") for m in bench_display["method"]],
+                text=[f"{v:.2f}%" for v in bench_display["pct_captured"]], textposition="outside"
+            ))
+            fig10.update_layout(height=380, yaxis_title="Downstream disruptions captured (%)",
+                                margin=dict(l=0,r=20,t=20,b=120),
+                                plot_bgcolor="white", showlegend=False)
+            st.plotly_chart(fig10, use_container_width=True)
+        else:
+            st.info(f"Carrier-type breakdown available for K=1–10 only. Switch to 'All' for K=1–20.")
 
+    # ── K-sensitivity line chart ───────────────────────────────────────────────
     st.subheader("K Sensitivity — C-FRPD vs. Benchmarks (Holdout 2024–25)")
-    bench_ct = D["bench"][D["bench"]["carrier_type"]==ct_filter]
+    K_RANGE = list(range(1, 21))
     fig11 = go.Figure()
-    for method in bench_ct["method"].unique():
-        m_data = bench_ct[bench_ct["method"]==method].sort_values("k")
-        display_name = "C-FRPD (GA-calibrated)" if method == "TOPSIS (DSS)" else method
-        is_cfrpd = method == "TOPSIS (DSS)"
+    for method, values in BENCHMARK_METHODS_ALL.items():
+        is_cfrpd = method == "C-FRPD (GA-calibrated)"
         fig11.add_trace(go.Scatter(
-            x=m_data["k"].tolist(),
-            y=m_data["pct_captured"].tolist(),
-            mode="lines+markers", name=display_name,
+            x=K_RANGE, y=values,
+            mode="lines+markers", name=method,
             line=dict(
-                color=METHOD_COLORS.get(display_name, "#7f7f7f"),
+                color=METHOD_COLORS.get(method, "#7f7f7f"),
                 width=3 if is_cfrpd else 1.5,
                 dash="solid" if is_cfrpd else "dot"
             ),
             marker=dict(size=6 if is_cfrpd else 4)
         ))
-    fig11.update_layout(height=360, xaxis_title="Intervention budget K",
+    # Vertical line at selected K
+    fig11.add_vline(x=k_val, line_dash="dash", line_color="gray",
+                    annotation_text=f"K={k_val}", annotation_position="top")
+    fig11.update_layout(height=380, xaxis_title="Intervention budget K",
                         yaxis_title="Downstream disruptions captured (%)",
                         margin=dict(l=0,r=20,t=20,b=40),
                         plot_bgcolor="white",
                         xaxis=dict(tickmode="linear", dtick=1))
     st.plotly_chart(fig11, use_container_width=True)
     st.caption(
-    "C-FRPD GA-calibrated Global policy outperforms all six benchmarks for K=1–20. "
-    "Gains are largest at K=5–10 (+0.87–0.92 pp). "
-    "Oracle ceiling at K=3: 17.36% (C-FRPD achieves 64% of theoretical maximum)."
-)
-
+        "C-FRPD GA-calibrated Global policy outperforms all six benchmarks for K=1–20. "
+        "Gains are largest at K=5–10 (+0.87–0.92 pp). "
+        "Oracle ceiling at K=3: 17.36% (C-FRPD achieves 64% of theoretical maximum)."
+    )
     st.subheader("GA-Calibrated Policy Weights")
     col_w1, col_w2 = st.columns([1.2, 1])
     with col_w1:
