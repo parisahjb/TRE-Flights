@@ -601,7 +601,7 @@ with tab3:
     st.plotly_chart(fig11, use_container_width=True)
     st.caption(
         "C-FRPD GA-calibrated Global policy outperforms all six benchmarks for K=1-20. "
-        "Gains are largest at K=5-7 (+0.48-0.53 pp). "
+        "Gains are largest at K=5-10 (+0.41-0.52 pp)."
         "Oracle ceiling at K=3: 17.36% (C-FRPD achieves 64% of theoretical maximum)."
     )
 
